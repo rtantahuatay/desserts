@@ -1,8 +1,6 @@
 type IconProps = { className?: string };
 
-// Dibujo original del reto, de assets/images/icon-add-to-cart.svg.
-// Cambié su color fijo por currentColor para que tome el color del texto
-// y pueda volverse blanco en el hover del botón.
+
 export function CartIcon({ className }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 21 20" fill="currentColor" aria-hidden="true">
