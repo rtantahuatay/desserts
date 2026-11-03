@@ -1,2 +1,24 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Red Hat Text", system-ui, sans-serif;
+
+  --color-brand: #c73b0f;
+  --color-brand-dark: #952c0b;
+  --color-success: #1ea575;
+
+  --color-rose-50: #fcf8f6;
+  --color-rose-100: #f5eeec;
+  --color-rose-300: #caafa7;
+  --color-rose-400: #ad8a85;
+  --color-rose-500: #87635a;
+  --color-rose-900: #260f08;
+}
+
+body {
+  @apply bg-rose-50 font-sans text-rose-900 antialiased;
+}
+
+button {
+  @apply cursor-pointer;
+}
