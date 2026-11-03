@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice"><rect width="400" height="400" fill="#ece1d8"/><ellipse cx="200" cy="225" rx="165" ry="125" fill="#fff"/><ellipse cx="200" cy="225" rx="125" ry="92" fill="#f4ece8"/>
+    <path d="M125 270c5-70 25-120 75-125 50 5 70 55 75 125z" fill="#fff6e6"/>
+    <path d="M125 270c30 15 120 15 150 0-5 25-145 25-150 0z" fill="#b3203c"/>
+    <circle cx="200" cy="145" r="20" fill="#c72c48"/>
+    <path d="M200 125q18-22 36-14-10 18-36 14z" fill="#6f9a3e"/></svg>
