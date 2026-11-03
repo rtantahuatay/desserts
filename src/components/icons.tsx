@@ -1,21 +1,13 @@
 type IconProps = { className?: string };
 
+// Dibujo original del reto, de assets/images/icon-add-to-cart.svg.
+// Cambié su color fijo por currentColor para que tome el color del texto
+// y pueda volverse blanco en el hover del botón.
 export function CartIcon({ className }: IconProps) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3 4h2.5l2.2 11h10.1l2-8H6.3" />
-      <circle cx="9" cy="19.5" r="1.3" />
-      <circle cx="17" cy="19.5" r="1.3" />
-      <path d="M13 9.5v3M11.5 11h3" />
+    <svg className={className} viewBox="0 0 21 20" fill="currentColor" aria-hidden="true">
+      <path d="M6.583 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM15.334 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM3.446 1.752a.625.625 0 0 0-.613-.502h-2.5V2.5h1.988l2.4 11.998a.625.625 0 0 0 .612.502h11.25v-1.25H5.847l-.5-2.5h11.238a.625.625 0 0 0 .61-.49l1.417-6.385h-1.28L16.083 10H5.096l-1.65-8.248Z" />
+      <path d="M11.584 3.75v-2.5h-1.25v2.5h-2.5V5h2.5v2.5h1.25V5h2.5V3.75h-2.5Z" />
     </svg>
   );
 }
