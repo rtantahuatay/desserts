@@ -1,5 +1,6 @@
 import type { Product } from "../data/products";
 import { CartIcon } from "./icons";
+import QuantityStepper from "./QuantityStepper";
 
 type ProductCardProps = {
     product: Product;
@@ -9,29 +10,35 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
     return (
         <article>
-            <div className="relative mb-9">
+            <div tabIndex={-1} className="group relative mb-9 outline-none">
                 <picture>
                     <source media="(min-width: 1024px)" srcSet={product.image.desktop} />
                     <source media="(min-width: 768px)" srcSet={product.image.tablet} />
                     <img
                         src={product.image.mobile}
                         alt={product.name}
-                        className="rounded-lg w-full"
+                        className="rounded-lg w-full ring-brand group-focus-within:ring-2"
                     />
                 </picture>
 
-                <button type="button" className="absolute bottom-0 left-1/2 flex h-11 w-40 -translate-x-1/2 
-                translate-y-1/2 items-center justify-center gap-2 rounded-full border border-rose-400 bg-white 
-                text-sm font-semibold transition-colors hover:border-brand hover:text-brand">
+                <div className="absolute bottom-0 left-1/2 h-11 w-40 -translate-x-1/2 translate-y-1/2">
+
+                <button type="button" className="flex h-full w-full items-center justify-center 
+                        gap-2 rounded-full border border-rose-400 bg-white text-sm font-semibold transition-colors 
+                        hover:border-brand hover:text-brand group-focus-within:opacity-0">
                     <CartIcon className="size-5 text-brand" />
                     Add to Cart
                 </button>
+                <QuantityStepper quantity={1} 
+                className=" pointer-events-none absolute inset-0 opacity-0 group-focus-within:pointer-events-auto group-focus-within:opacity-100 " />
+
+                </div>
             </div>
 
             <p className="text-sm text-rose-500">{product.category}</p>
-            <h3 className="font-semibold">{product.name}</h3>
+            <h2 className="font-semibold">{product.name}</h2>
             <p className="font-semibold text-brand">${product.price.toFixed(2)}</p>
         </article>
 
-    )
+    );
 }
