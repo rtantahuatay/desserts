@@ -13,12 +13,12 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
         <aside aria-label="Shopping cart" className={` fixed inset-y-0 right-0 z-20 w-full max-w-sm overflow-y-auto bg-white p-6
             transition-[translate,visibility] lg:sticky lg:inset-auto lg:top-8 lg:z-auto lg:w-96 lg:shrink-0 lg:translate-x-0
-            lg:rounded-xl lg:visible ${isOpen ? "visible translate-x-0" : "translate-x-full"} `} >
+            lg:rounded-xl lg:visible ${isOpen ? "visible translate-x-0" : "invisible translate-x-full"} `} >
             
             <div className="flex items-center justify-between">
-                <h2 className="text-2x1 font-bold text-brand">Your Cart (0)</h2>
+                <h2 className="text-2xl font-bold text-brand">Your Cart (0)</h2>
                 <button type="button" aria-label="Close cart" onClick={onClose}
-                className="rounded-full border boder-rose-400 p-1.5 text-rose-400 transition-colors hover:border-rose-900 hover:text-rose-900 lg:hidden">
+                className="rounded-full border border-rose-400 p-1.5 text-rose-400 transition-colors hover:border-rose-900 hover:text-rose-900 lg:hidden">
                     <CloseIcon className="size-3" />
                 </button>
             </div>
