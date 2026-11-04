@@ -3,9 +3,16 @@ import CartDrawer from "./components/CartDrawer";
 import Header from "./components/Header";
 import ProductCard from "./components/ProductCard";
 import { products } from "./data/products";
+import ConfirmOrderModal from "./components/ConfirmOrderModal";
 
 export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleConfirmOrder(){
+    setIsCartOpen(false);
+    setIsModalOpen(true);
+  }
 
   return (
     <main className="mx-auto max-w-7xl p-6 lg:flex lg:items-start lg:gap-8 lg:p-10">   
@@ -17,7 +24,8 @@ export default function App() {
         ))}
       </section>
       </div>
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} onConfirm={handleConfirmOrder} />
+      <ConfirmOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 }

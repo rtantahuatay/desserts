@@ -3,9 +3,10 @@ import { CloseIcon } from "./icons";
 type CartDrawerProps = {
   isOpen: boolean;
   onClose: () => void;
+  onConfirm: () => void;
 };
 
-export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+export default function CartDrawer({ isOpen, onClose, onConfirm }: CartDrawerProps) {
     return (
         <>
         <div onClick={onClose} className={` fixed inset-0 z-10 bg-black/50 transition-opacity lg:hidden 
@@ -29,6 +30,12 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     Your added items will appear here. Start shopping to fill it in.
                 </p>
             </div>
+
+            <button type="button" onClick={onConfirm} className="w-full rounded-full bg-brand py-4 font-semibold text-white transition-colors
+                hover:bg-brand-dark">
+                Confirm Order
+            </button>
+
         </aside>
         </>
     );
