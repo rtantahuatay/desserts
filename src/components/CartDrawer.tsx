@@ -13,7 +13,7 @@ export default function CartDrawer({ isOpen, onClose, onConfirm }: CartDrawerPro
             ${isOpen ? "opacity-100": "pointer-events-none opacity-0"} `}  />
 
         <aside aria-label="Shopping cart" className={` fixed inset-y-0 right-0 z-20 w-full max-w-sm overflow-y-auto bg-white p-6
-            transition-[translate,visibility] lg:sticky lg:inset-auto lg:top-8 lg:z-auto lg:w-96 lg:shrink-0 lg:translate-x-0
+            transition-[translate,visibility] lg:sticky lg:inset-auto lg:top-8 lg:z-auto lg:w-80 xl:w-96 lg:shrink-0 lg:translate-x-0
             lg:rounded-xl lg:visible ${isOpen ? "visible translate-x-0" : "invisible translate-x-full"} `} >
             
             <div className="flex items-center justify-between">
