@@ -1,6 +1,10 @@
 import { CartIcon } from "./icons";
 
-export default function Header() {
+type HeaderProps = {
+  onOpenCart: () => void;
+};
+
+export default function Header({ onOpenCart }: HeaderProps) {
   return (
     <header className="flex items-center justify-between">
       <h1 className="text-[40px] leading-tight font-bold">Desserts</h1>
@@ -8,6 +12,7 @@ export default function Header() {
       <button
         type="button"
         aria-label="Open cart, 0 items"
+        onClick={onOpenCart}
         className="relative rounded-full bg-white p-3 text-brand shadow-sm transition-colors hover:bg-brand hover:text-white lg:hidden"
       >
         <CartIcon className="size-6" />
