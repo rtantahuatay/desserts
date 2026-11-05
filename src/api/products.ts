@@ -9,8 +9,18 @@ function wait(milliseconds: number){
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-export async function getProducts(): Promise<Product[]> {
+type ProductFilters = {
+    search: string;
+    category: string;
+};
+
+export async function getProducts({ search, category }: ProductFilters): Promise<Product[]> {
     await wait(1200);
-    const response = await api.get<Product[]>("/products");
+    const response = await api.get<Product[]>("/products", {
+        params: {
+            "name:contains": search || undefined,
+            category: category || undefined,
+        },
+    });
     return response.data;
 }
