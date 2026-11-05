@@ -1,18 +1,16 @@
-import { products } from "../data/products";
-
 type ConfirmOrderModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 const sampleOrder = [
-  { product: products[3], quantity: 1 },
-  { product: products[1], quantity: 4 },
-  { product: products[8], quantity: 2 },
+  { id: "4", name: "Classic Tiramisu", price: 5.5, thumbnail: "/images/image-tiramisu-thumbnail.jpg", quantity: 1 },
+  { id: "2", name: "Vanilla Bean Crème Brûlée", price: 7, thumbnail: "/images/image-creme-brulee-thumbnail.jpg", quantity: 4 },
+  { id: "9", name: "Vanilla Panna Cotta", price: 6.5, thumbnail: "/images/image-panna-cotta-thumbnail.jpg", quantity: 2 },
 ];
 
 const orderTotal = sampleOrder.reduce(
-  (total, item) => total + item.product.price * item.quantity,
+  (total, item) => total + item.price * item.quantity,
   0,
 );
 
@@ -36,22 +34,22 @@ export default function ConfirmOrderModal({ isOpen, onClose }: ConfirmOrderModal
 
         <div className="mt-8 rounded-lg bg-rose-50 p-6">
           <ul>
-            {sampleOrder.map(({ product, quantity }) => (
+            {sampleOrder.map((item) => (
               <li
-                key={product.id}
+                key={item.id}
                 className="flex items-center gap-4 border-b border-rose-100 py-4 first:pt-0"
               >
-                <img src={product.image.thumbnail} alt="" className="size-12 rounded" />
+                <img src={item.thumbnail} alt="" className="size-12 rounded" />
 
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-semibold">{product.name}</p>
+                  <p className="truncate text-sm font-semibold">{item.name}</p>
                   <p className="mt-1 text-sm">
-                    <span className="mr-2 font-semibold text-brand">{quantity}x</span>
-                    <span className="text-rose-500">@ ${product.price.toFixed(2)}</span>
+                    <span className="mr-2 font-semibold text-brand">{item.quantity}x</span>
+                    <span className="text-rose-500">@ ${item.price.toFixed(2)}</span>
                   </p>
                 </div>
 
-                <p className="font-semibold">${(product.price * quantity).toFixed(2)}</p>
+                <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
               </li>
             ))}
           </ul>
