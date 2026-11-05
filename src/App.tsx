@@ -5,15 +5,20 @@ import CartDrawer from "./components/CartDrawer";
 import ConfirmOrderModal from "./components/ConfirmOrderModal";
 import Header from "./components/Header";
 import ProductCard from "./components/ProductCard";
+import ProductCardSkeleton from "./components/ProductCardSkeleton";
+
+
 
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: products = [], isPending, isError } = useQuery({
+  const { data: products = [], isPending, isError, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
+
+  const isEmpty = !isPending && !isError && products.length === 0;
 
   return (
     <main className="mx-auto max-w-7xl p-6 lg:flex lg:items-start lg:gap-8 lg:p-10">
@@ -21,9 +26,27 @@ export default function App() {
         <Header />
 
         { isPending && <p className="mt-8">Loading products...</p> }
-        { isError && <p className="mt-8">Could not load the products.</p> }
+
+        { isError && (
+          <div role="alert" className="mt-8 rounded-xl bg-white p-6 text-center">
+            <p className="font-semibold">Could not load the products.</p>
+            <button type="button" onClick={()=> refetch()} className="mt-4 rounded-full bg-brand px-6 py-3 font-semibold text-white transition-colors
+            hover:bg-brand-dark">
+              try again
+            </button>
+          </div>
+        )}
+
+        { isEmpty && (
+          <p className="mt-8 rounded-xl bg-white p-6 text-center text-rose-500">
+            No products found.
+          </p>
+        )}
 
        <section aria-label="Products" className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-3">
+
+        { isPending && Array.from({length: 9}, (_, index)=> <ProductCardSkeleton key={index} /> )}
+
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
