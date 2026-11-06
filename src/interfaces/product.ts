@@ -17,3 +17,17 @@ export interface ProductSearchParams {
     search: string;
     category: string;
 }
+
+export interface ProductQueryParams extends ProductSearchParams {
+    page: number;
+}
+
+export interface PaginatedResponse<T> {
+    first: number;
+    prev: number | null; 
+    next: number | null;
+    last: number;
+    pages: number;
+    items: number;
+    data: T[];
+}

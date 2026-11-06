@@ -1,18 +1,25 @@
 import axios from "axios";
-import type { Product, ProductSearchParams } from "../interfaces/product";
+import type { PaginatedResponse, Product, ProductQueryParams } from "../interfaces/product";
 import { api } from "./api";
+
+
+export const PRODUCTS_PER_PAGE = 8;
 
 
 function wait(milliseconds: number){
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-export async function getProducts({ search, category }: ProductSearchParams): Promise<Product[]> {
+export async function getProducts({ search, category, page }: ProductQueryParams): Promise<PaginatedResponse<Product>> {
+
+    
     await wait(1200);
-    const response = await api.get<Product[]>("/products", {
+    const response = await api.get<PaginatedResponse<Product>>("/products", {
         params: {
             "name:contains": search || undefined,
             category: category || undefined,
+            _page: page,
+            _per_page: PRODUCTS_PER_PAGE,
         },
     });
     return response.data;

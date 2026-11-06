@@ -1,13 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import type { ProductSearchParams } from "../interfaces/product";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import type { ProductQueryParams } from "../interfaces/product";
 import { getProductById, getProducts, isNotFoundError } from "../services/productsService";
 
-export function useProducts(params: ProductSearchParams){
+export function useProducts(params: ProductQueryParams){
     return useQuery({
         queryKey: ["products", params],
         queryFn: () => getProducts(params),
+        placeholderData: keepPreviousData,
     });
-
 }
 
 
@@ -18,4 +18,5 @@ export function useProduct(id: string) {
             retry: (failureCount, error) => !isNotFoundError(error) && failureCount < 1,
         });
 }
+
 
