@@ -1,4 +1,4 @@
-import type { Product } from "../types/product";
+import type { Product } from "../interfaces/product";
 import { CartIcon } from "./icons";
 import QuantityStepper from "./QuantityStepper";
 import { Link } from "react-router";

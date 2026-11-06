@@ -13,3 +13,7 @@ export type Product = {
     image: ProductImage;
 };
 
+export interface ProductSearchParams {
+    search: string;
+    category: string;
+}

@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router";
-import { getProductById, isNotFoundError } from "../api/products";
+import { useProduct } from "../hooks/useProductsQueries";
+import { isNotFoundError } from "../services/productsService";
 import NotFoundMessage from "../components/NotFoundMessage";
 import ProductDetailSkeleton from "../components/ProductDetailSkeleton";
 
@@ -9,11 +9,7 @@ export default function ProductDetailPage(){
 
     const { id = "" } = useParams();
 
-    const { data: product, isPending, isError, error, refetch } = useQuery({
-        queryKey: ["products", id],
-        queryFn: () => getProductById(id),
-        retry: (failureCount, error) => !isNotFoundError(error) && failureCount < 1,
-    });
+    const { data: product, isPending, isError, error, refetch } = useProduct(id);
 
     const isNotFound = isNotFoundError(error);
 

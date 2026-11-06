@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../api/products";
+import { useProducts } from "../hooks/useProductsQueries";
 import CartDrawer from "../components/CartDrawer";
 import ConfirmOrderModal from "../components/ConfirmOrderModal";
 import Header from "../components/Header";
@@ -17,9 +16,9 @@ export default function HomePage() {
 
     const debouncedSearch = useDebouncedValue(search.trim(), 400);
 
-    const { data: products = [], isPending, isError, refetch } = useQuery({
-        queryKey: ["products", {search: debouncedSearch, category}],
-        queryFn: () => getProducts({search: debouncedSearch, category})
+    const { data: products = [], isPending, isError, refetch } = useProducts({
+        search: debouncedSearch, 
+        category,
     });
 
     const isEmpty = !isPending && !isError && products.length === 0;
