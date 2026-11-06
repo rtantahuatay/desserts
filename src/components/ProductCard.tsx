@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             <p className="text-sm text-rose-500">{product.category}</p>
             <h2 className="font-semibold">
-                <Link to={`/product/${product.id}`} className="hover:text-brand hover:underline">
+                <Link to={`/producto/${product.id}`} className="hover:text-brand hover:underline">
                     {product.name}
                 </Link>
             </h2>

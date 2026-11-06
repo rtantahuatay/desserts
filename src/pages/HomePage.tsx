@@ -42,7 +42,7 @@ export default function HomePage() {
                         <p className="font-semibold">Could not load the products.</p>
                         <button type="button" onClick={()=> refetch()} className="mt-4 rounded-full bg-brand px-6 py-3 font-semibold text-white
                                 transition-colors hover:bg-brand-dark">
-                            Try again!
+                            Try again
                         </button>
                     </div>
                 )}

@@ -8,7 +8,7 @@ export default function NotFoundPage() {
                 ← Back to products
             </Link>
 
-            <NotFoundMessage message="this page does not exist." />
+            <NotFoundMessage message="This page does not exist." />
         </main>
     );
 }

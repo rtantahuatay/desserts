@@ -34,7 +34,7 @@ export default function ProductDetailPage(){
 
             {isError && !isNotFound && (
                 <div role="alert" className="mt-8 rounded-xl bg-white p-6 text-center">
-                    <p className="found-semibold">Could not load the product.</p>
+                    <p className="font-semibold">Could not load the product.</p>
                     <button type="button" onClick={() => refetch()} className="mt-4 rounded-full bg-brand px-6 py-3 font-semibold text-white
                             transition-colors hover:bg-brand-dark">
                     Try again
