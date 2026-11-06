@@ -24,3 +24,14 @@ export async function getProducts({ search, category }: ProductFilters): Promise
     });
     return response.data;
 }
+
+export async function getProductById(id: string): Promise<Product> {
+    await wait(1200);
+    const response = await api.get<Product>(`/products/${id}`);
+    return response.data;
+    
+}
+
+export function isNotFoundError(error: unknown) {
+    return axios.isAxiosError(error) && error.response?.status === 404;
+}
