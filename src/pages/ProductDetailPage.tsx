@@ -3,6 +3,7 @@ import { useProduct } from "../hooks/useProductsQueries";
 import { isNotFoundError } from "../services/productsService";
 import NotFoundMessage from "../components/NotFoundMessage";
 import ProductDetailSkeleton from "../components/ProductDetailSkeleton";
+import CategoryBadge from "../components/CategoryBadge";
 
 
 export default function ProductDetailPage(){
@@ -47,8 +48,8 @@ export default function ProductDetailPage(){
                     </picture>
 
                     <div>
-                        <p className="text-rose-500">{product.category}</p>
-                        <h1 className="mt-1 text-[40px] leading-tight font-bold">{product.name}</h1>
+                        <CategoryBadge name={product.category} />
+                        <h1 className="mt-3 text-[40px] leading-tight font-bold">{product.name}</h1>
                         <p className="mt-4 text-2xl font-semibold text-brand">${product.price.toFixed(2)}</p>
                     </div>
                 </article>

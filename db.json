@@ -9,5 +9,16 @@
     { "id": "7", "name": "Red Velvet Cake", "category": "Cake", "price": 4.5, "image": { "thumbnail": "/images/image-cake-thumbnail.jpg", "mobile": "/images/image-cake-mobile.jpg", "tablet": "/images/image-cake-tablet.jpg", "desktop": "/images/image-cake-desktop.jpg" } },
     { "id": "8", "name": "Salted Caramel Brownie", "category": "Brownie", "price": 5.5, "image": { "thumbnail": "/images/image-brownie-thumbnail.jpg", "mobile": "/images/image-brownie-mobile.jpg", "tablet": "/images/image-brownie-tablet.jpg", "desktop": "/images/image-brownie-desktop.jpg" } },
     { "id": "9", "name": "Vanilla Panna Cotta", "category": "Panna Cotta", "price": 6.5, "image": { "thumbnail": "/images/image-panna-cotta-thumbnail.jpg", "mobile": "/images/image-panna-cotta-mobile.jpg", "tablet": "/images/image-panna-cotta-tablet.jpg", "desktop": "/images/image-panna-cotta-desktop.jpg" } }
+  ],
+    "categories": [
+    { "id": "1", "name": "Waffle" },
+    { "id": "2", "name": "Crème Brûlée" },
+    { "id": "3", "name": "Macaron" },
+    { "id": "4", "name": "Tiramisu" },
+    { "id": "5", "name": "Baklava" },
+    { "id": "6", "name": "Pie" },
+    { "id": "7", "name": "Cake" },
+    { "id": "8", "name": "Brownie" },
+    { "id": "9", "name": "Panna Cotta" }
   ]
 }

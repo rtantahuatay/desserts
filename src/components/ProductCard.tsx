@@ -2,6 +2,7 @@ import type { Product } from "../interfaces/product";
 import { CartIcon } from "./icons";
 import QuantityStepper from "./QuantityStepper";
 import { Link } from "react-router";
+import CategoryBadge from "./CategoryBadge";
 
 type ProductCardProps = {
     product: Product;
@@ -36,8 +37,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </div>
             </div>
 
-            <p className="text-sm text-rose-500">{product.category}</p>
-            <h2 className="font-semibold">
+            <CategoryBadge name={product.category}/>
+            <h2 className="mt-2 font-semibold">
                 <Link to={`/producto/${product.id}`} className="hover:text-brand hover:underline">
                     {product.name}
                 </Link>

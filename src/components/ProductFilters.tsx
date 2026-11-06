@@ -1,14 +1,4 @@
-const categories = [
-    "Waffle",
-    "Crème Brûlée",
-    "Macaron",
-    "Tiramisu",
-    "Baklava",
-    "Pie",
-    "Cake",
-    "Brownie",
-    "Panna Cotta",
-];
+import { useCategories } from "../hooks/useCategoriesQueries";
 
 type ProductFiltersProps = {
     search: string;
@@ -23,6 +13,9 @@ export default function ProductFilters ({
     onSearchChange ,
     onCategoryChange ,
 }: ProductFiltersProps) {
+
+    const { data: categories = [], isPending, isError } = useCategories();
+
     return (
         <div className="mt-6 flex flex-col gap-4 md:flex-row">
             <label className="flex-1 text-sm font-semibold">
@@ -33,12 +26,12 @@ export default function ProductFilters ({
 
             <label className="text-sm font-semibold md:w-56">
                 Category
-                <select value={category} onChange={(event) => onCategoryChange(event.target.value)} 
+                <select value={category} disabled={isPending || isError} onChange={(event) => onCategoryChange(event.target.value)} 
                 className="mt-1 w-full rounded-lg border border-rose-300 bg-white p-3 font-normal">
-                    <option value="">All categories</option>
+                    <option value="">{isPending ? "Loading categories..." : isError ? "Categories unavailable" : "All categories"}</option>
                     {categories.map((item) => (
-                        <option key={item} value={item}>
-                            {item}
+                        <option key={item.id} value={item.name}>
+                            {item.name}
                         </option>
                     ))}
                 </select>
