@@ -44,7 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         ) : (
                     <button type="button" onClick={() => addItem(product)} className="flex h-full w-full items-center justify-center 
                             gap-2 rounded-full border border-rose-400 bg-white text-sm font-semibold transition-colors 
-                            hover:border-brand hover:text-brand group-focus-within:opacity-0">
+                            hover:border-brand hover:text-brand">
                         <CartIcon className="size-5 text-brand" />
                         Add to Cart
                     </button>
