@@ -12,11 +12,11 @@ export default function Header({onOpenCart}: HeaderProps) {
   const cartCount = useCartStore(selectCartCount);
 
   return (
-    <header className="flex items-center justify-between">
+    <header className="flex flex-wrap items-center justify-between gap-3">
       <h1 className="text-[40px] leading-tight font-bold">Desserts</h1>
 
       <div className="flex items-center gap-3">
-        <Link to="/producto/nuevo" className="rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+        <Link to="/producto/nuevo" className="whitespace-nowrap rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
           New product
         </Link>
 
