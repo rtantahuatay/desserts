@@ -13,6 +13,7 @@ import { PRODUCTS_PER_PAGE } from "../services/productsService";
 
 export default function HomePage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");
     const [page, setPage] = useState(1);
@@ -45,10 +46,15 @@ export default function HomePage() {
         window.scrollTo({top: 0, behavior: "smooth"});
     }
 
+    function handleConfirmOrder() {
+        setIsCartOpen(false);
+        setIsModalOpen(true);
+    }
+
     return (
         <main className="mx-auto max-w-7xl p-6 lg:flex lg:items-start lg:gap-8 lg:p-10">
             <div className="lg:flex-1">
-                <Header />
+                <Header onOpenCart ={() => setIsCartOpen(true)} />
 
                 <ProductFilters 
                 search={search}
@@ -98,7 +104,7 @@ export default function HomePage() {
 
             </div>
 
-            <CartDrawer onConfirm={() => setIsModalOpen(true)} />
+            <CartDrawer isOpen={isCartOpen} onClose={()=> setIsCartOpen(false)} onConfirm={handleConfirmOrder}  />
             <ConfirmOrderModal isOpen={isModalOpen} onClose={()=> setIsModalOpen(false)} />
         </main>
     );
