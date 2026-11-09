@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ProductInput } from "../interfaces/product";
+import type { Product, ProductInput } from "../interfaces/product";
 
 
 export const PRODUCT_PHOTOS = [
@@ -39,5 +39,18 @@ export function toProductInput(values: ProductFormValues): ProductInput {
             tablet: `/images/image-${photo}-tablet.jpg`,
             desktop: `/images/image-${photo}-desktop.jpg`,
         },
+    };
+}
+
+export function toProductFormValues(product: Product): ProductFormValues {
+    const photo = product.image.desktop
+            .replace("/images/image-","")
+            .replace("-desktop.jpg","");
+
+    return {
+        name: product.name,
+        category: product.category,
+        price: product.price,
+        photo,
     };
 }

@@ -51,6 +51,10 @@ export default function ProductDetailPage(){
                         <CategoryBadge name={product.category} />
                         <h1 className="mt-3 text-[40px] leading-tight font-bold">{product.name}</h1>
                         <p className="mt-4 text-2xl font-semibold text-brand">${product.price.toFixed(2)}</p>
+                        <Link to={`/producto/${product.id}/editar`} className="mt-6 inline-block rounded-full border border-brand px-6 py-3 font-semibold text-brand
+                                transition-colors hover:bg-brand hover:text-white">
+                            Edit product
+                        </Link>
                     </div>
                 </article>
             )}

@@ -16,7 +16,7 @@ const EMPTY_VALUES: DefaultValues<ProductFormValues> ={
     photo: "",
 };
 
-const FIELD_STYLES = "mt-1 w=full rounded-lg border border-rose-300 bg-white p-3 font-normal";
+const FIELD_STYLES = "mt-1 w-full rounded-lg border border-rose-300 bg-white p-3 font-normal";
 const ERROR_STYLES = "mt-1 block text-sm font-normal text-brand";
 
 export default function ProductForm ({

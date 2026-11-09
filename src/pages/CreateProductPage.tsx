@@ -15,7 +15,7 @@ export default function CreateProductPage() {
 
     return (
         <main className="mx-auto max-w-xl p-6 lg:p-10">
-            <Link to="/" className="font-semibold text-brand haver:underline">
+            <Link to="/" className="font-semibold text-brand hover:underline">
                 ← Back to products
             </Link>
 

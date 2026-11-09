@@ -7,6 +7,7 @@ import type { Product } from "../interfaces/product";
 interface CartState {
     items: CartItem[];
     addItem: (product: Product) => void;
+    updateItem: (product: Product) => void;
     increaseQuantity: (id: string) => void;
     decreaseQuantity: (id: string) => void;
     removeItem: (id: string) => void;
@@ -30,6 +31,15 @@ export const useCartStore = create<CartState>()(
                             quantity: 1,
                         },
                     ],
+                })),
+
+            updateItem: (product) =>
+                set((state) => ({
+                    items: state.items.map((item) =>
+                    item.id === product.id ? { ...item, name: product.name, price: product.price, thumbnail: product.image.thumbnail }
+                    : item,
+                ),
+
                 })),
 
             increaseQuantity: (id) =>
