@@ -1,4 +1,5 @@
 import { selectCartTotal, useCartStore } from "../stores/cartStore";
+import { toast } from "sonner";
 
 type ConfirmOrderModalProps = {
   isOpen: boolean;
@@ -11,9 +12,10 @@ export default function ConfirmOrderModal({ isOpen, onClose }: ConfirmOrderModal
   const orderTotal = useCartStore(selectCartTotal);
   const clearCart = useCartStore((state) => state.clearCart);
 
-  function handleStarNewOrder() {
+  function handleStartNewOrder() {
     clearCart();
     onClose();
+    toast.success("Your order is on its way!")
   }
 
   if (!isOpen) return null;
@@ -64,7 +66,7 @@ export default function ConfirmOrderModal({ isOpen, onClose }: ConfirmOrderModal
         <button
           type="button"
           autoFocus
-          onClick={handleStarNewOrder}
+          onClick={handleStartNewOrder}
           className="mt-8 w-full rounded-full bg-brand py-4 font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Start New Order
