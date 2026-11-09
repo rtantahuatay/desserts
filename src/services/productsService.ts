@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { PaginatedResponse, Product, ProductInput, ProductQueryParams } from "../interfaces/product";
 import { api } from "./api";
-import { create } from 'zustand';
+
 
 
 

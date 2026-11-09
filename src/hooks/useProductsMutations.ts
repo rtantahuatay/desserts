@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
 import type { ProductInput } from "../interfaces/product";
 import { createProduct, deleteProduct, updateProduct } from "../services/productsService";
@@ -12,6 +12,9 @@ export function useCreateProduct() {
             queryClient.invalidateQueries({queryKey: ["products"]});
             toast.success("Product created");
         },
+        onError: () => {
+            toast.error("Could not create the product. Please try again")
+        }
     });
 }
 
@@ -31,16 +34,16 @@ export function useUpdateProduct() {
 }
 
 export function useDeleteProduct() {
-    const QueryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (id: string) => deleteProduct(id),
         onSuccess: () => {
-            QueryClient.invalidateQueries({queryKey: ["products"]});
+            queryClient.invalidateQueries({queryKey: ["products"]});
             toast.success("Product deleted");
         },
         onError: () => {
-            toast.error("Could not delete the product. Please try again");
+            toast.error("Could not delete the product. Please try again...");
         },
     });
 }
