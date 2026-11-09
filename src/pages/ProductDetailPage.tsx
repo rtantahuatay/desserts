@@ -1,9 +1,12 @@
-import { Link, useParams } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
+import { useDeleteProduct } from "../hooks/useProductsMutations";
 import { useProduct } from "../hooks/useProductsQueries";
 import { isNotFoundError } from "../services/productsService";
 import NotFoundMessage from "../components/NotFoundMessage";
 import ProductDetailSkeleton from "../components/ProductDetailSkeleton";
 import CategoryBadge from "../components/CategoryBadge";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal";
 
 
 export default function ProductDetailPage(){
@@ -13,6 +16,16 @@ export default function ProductDetailPage(){
     const { data: product, isPending, isError, error, refetch } = useProduct(id);
 
     const isNotFound = isNotFoundError(error);
+
+    const navigate = useNavigate();
+    const deleteMutation = useDeleteProduct();
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    function handleConfirmDelete() {
+        deleteMutation.mutate(id, {
+            onSuccess: () => navigate("/"),
+        });
+    }
 
     return (
         <main className="mx-auto max-w-4xl p-6 lg:p-10">
@@ -51,13 +64,29 @@ export default function ProductDetailPage(){
                         <CategoryBadge name={product.category} />
                         <h1 className="mt-3 text-[40px] leading-tight font-bold">{product.name}</h1>
                         <p className="mt-4 text-2xl font-semibold text-brand">${product.price.toFixed(2)}</p>
-                        <Link to={`/producto/${product.id}/editar`} className="mt-6 inline-block rounded-full border border-brand px-6 py-3 font-semibold text-brand
-                                transition-colors hover:bg-brand hover:text-white">
-                            Edit product
-                        </Link>
+
+                        <div className="mt-6 flex flex-wrap gap-3">
+                            <Link to={`/producto/${product.id}/editar`} className="rounded-full border border-brand px-6 py-3 font-semibold text-brand
+                                    transition-colors hover:bg-brand hover:text-white">
+                                Edit product
+                            </Link>
+
+                            <button type="button" onClick={() => setIsDeleteModalOpen(true)} className="rounded-full border border-rose-400 px-6 py-3 font-semibold
+                                    transition-colors hover:border-brand hover:text-brand">
+                                Delete product
+                            </button>
+                        </div>
                     </div>
                 </article>
             )}
+
+            <ConfirmDeleteModal
+                isOpen={isDeleteModalOpen}
+                productName={product?.name ?? ""}
+                isDeleting={deleteMutation.isPending}
+                onCancel={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleConfirmDelete}
+            />
         </main>
     )
 

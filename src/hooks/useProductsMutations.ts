@@ -14,7 +14,7 @@ export function useCreateProduct() {
             toast.success("Product created");
         },
         onError: () => {
-            toast.error("Could not create the product. ...Please try again.")
+            toast.error("Could not create the product. Please try again.")
         }
     });
 }
@@ -37,17 +37,21 @@ export function useUpdateProduct() {
     });
 }
 
+
 export function useDeleteProduct() {
     const queryClient = useQueryClient();
+    const removeCartItem = useCartStore((state) => state.removeItem);
 
     return useMutation({
         mutationFn: (id: string) => deleteProduct(id),
-        onSuccess: () => {
+        onSuccess: (_data, id) => {
+            queryClient.removeQueries({queryKey: ["products", id], exact: true});
             queryClient.invalidateQueries({queryKey: ["products"]});
+            removeCartItem(id);
             toast.success("Product deleted");
         },
         onError: () => {
-            toast.error("Could not delete the product. ...Please try again.");
+            toast.error("Could not delete the product. Please try again.")
         },
     });
 }
