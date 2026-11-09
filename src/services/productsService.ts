@@ -1,6 +1,8 @@
 import axios from "axios";
-import type { PaginatedResponse, Product, ProductQueryParams } from "../interfaces/product";
+import type { PaginatedResponse, Product, ProductInput, ProductQueryParams } from "../interfaces/product";
 import { api } from "./api";
+import { create } from 'zustand';
+
 
 
 export const PRODUCTS_PER_PAGE = 8;
@@ -8,6 +10,20 @@ export const PRODUCTS_PER_PAGE = 8;
 
 function wait(milliseconds: number){
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+export async function createProduct(product: ProductInput):Promise<Product> {
+    const response = await api.post<Product>("/products", product);
+    return response.data;    
+}
+
+export async function updateProduct(id:string, product: ProductInput): Promise<Product> {
+    const response = await api.put<Product>(`/products/${id}`, product);
+    return response.data;
+}
+
+export async function deleteProduct(id:string): Promise<void> {
+    await api.delete(`/products/${id}`);
 }
 
 export async function getProducts({ search, category, page }: ProductQueryParams): Promise<PaginatedResponse<Product>> {

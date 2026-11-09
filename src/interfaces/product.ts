@@ -31,3 +31,5 @@ export interface PaginatedResponse<T> {
     items: number;
     data: T[];
 }
+
+export type ProductInput = Omit<Product, "id">;
