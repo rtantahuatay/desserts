@@ -36,16 +36,16 @@ export default function CartDrawer({ isOpen, onClose, onConfirm }: CartDrawerPro
         }`}
       />
 
-    <aside arial-label="Shopping cart" className={ ` fixed inset-y-0 right-0 z-20 w-full max-w-sm overflow-y-auto bg-white p-6 transition-[translate,visibility]
+    <aside aria-label="Shopping cart" className={ ` fixed inset-y-0 right-0 z-20 w-full max-w-sm overflow-y-auto bg-white p-6 transition-[translate,visibility]
       lg:visible lg:sticky lg:inset-auto lg:top-8 lg:z-auto lg:w-80 lg:shrink-0 lg:translate-x-0 lg:rounded-xl xl:w-96
-      ${isOpen ? "visible translade-x-0" : "invisible translate-x-full"} ` } >
+      ${isOpen ? "visible translate-x-0" : "invisible translate-x-full"} ` } >
 
-      <div className="flex items-center justity-between">
-        <h2 className="text 2xl font-bold text-brand">Your Cart ({cartCount})</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-brand">Your Cart ({cartCount})</h2>
 
-      <button type="button" arial-label="Close cart" 
+      <button type="button" aria-label="Close cart" 
               onClick={onClose} 
-              className="rounded-full border border-rose-400 p-1.5 text-rose-400 transition-colors hover:boder-rose-900 hover:text-rose-900 lg:hidden">
+              className="rounded-full border border-rose-400 p-1.5 text-rose-400 transition-colors hover:border-rose-900 hover:text-rose-900 lg:hidden">
         <CloseIcon className="size-3" />
       </button>
       </div>
@@ -67,10 +67,10 @@ export default function CartDrawer({ isOpen, onClose, onConfirm }: CartDrawerPro
 
           <div className="flex items-center justify-between py-6">
             <p className="text-sm">Order Total</p>
-            <p className="text-xl font-bold">${cartTotal.toFixed(2)}</p>
+            <p className="text-2xl font-bold">${cartTotal.toFixed(2)}</p>
           </div>  
 
-          <p className="flex items-center justity-center gap-2 rounded-lg bg-rose-50 p-4 text-sm">
+          <p className="flex items-center justify-center gap-2 rounded-lg bg-rose-50 p-4 text-sm">
             <img src="/images/icon-carbon-neutral.svg" alt="" />
             <span>
               This is a <strong className="font-semibold">carbon-neutral</strong> delivery
@@ -78,7 +78,7 @@ export default function CartDrawer({ isOpen, onClose, onConfirm }: CartDrawerPro
           </p>
 
           <button type="button" onClick={onConfirm} className="mt-6 w-full rounded-full bg-brand py-4 font-semibold text-white
-          transition colors hover:bg-brand-dark">
+          transition-colors hover:bg-brand-dark">
             Confirm Order
           </button>
         </>

@@ -1,20 +1,21 @@
+import { selectCartTotal, useCartStore } from "../stores/cartStore";
+
 type ConfirmOrderModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const sampleOrder = [
-  { id: "4", name: "Classic Tiramisu", price: 5.5, thumbnail: "/images/image-tiramisu-thumbnail.jpg", quantity: 1 },
-  { id: "2", name: "Vanilla Bean Crème Brûlée", price: 7, thumbnail: "/images/image-creme-brulee-thumbnail.jpg", quantity: 4 },
-  { id: "9", name: "Vanilla Panna Cotta", price: 6.5, thumbnail: "/images/image-panna-cotta-thumbnail.jpg", quantity: 2 },
-];
-
-const orderTotal = sampleOrder.reduce(
-  (total, item) => total + item.price * item.quantity,
-  0,
-);
-
 export default function ConfirmOrderModal({ isOpen, onClose }: ConfirmOrderModalProps) {
+
+  const items = useCartStore((state) => state.items);
+  const orderTotal = useCartStore(selectCartTotal);
+  const clearCart = useCartStore((state) => state.clearCart);
+
+  function handleStarNewOrder() {
+    clearCart();
+    onClose();
+  }
+
   if (!isOpen) return null;
 
   return (
@@ -34,7 +35,7 @@ export default function ConfirmOrderModal({ isOpen, onClose }: ConfirmOrderModal
 
         <div className="mt-8 rounded-lg bg-rose-50 p-6">
           <ul>
-            {sampleOrder.map((item) => (
+            {items.map((item) => (
               <li
                 key={item.id}
                 className="flex items-center gap-4 border-b border-rose-100 py-4 first:pt-0"
@@ -62,7 +63,8 @@ export default function ConfirmOrderModal({ isOpen, onClose }: ConfirmOrderModal
 
         <button
           type="button"
-          onClick={onClose}
+          autoFocus
+          onClick={handleStarNewOrder}
           className="mt-8 w-full rounded-full bg-brand py-4 font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Start New Order
